@@ -1,5 +1,7 @@
 INDEX VERSION 1.131
 E:\kimbs\java2_basic\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1143344243.index
 \test\src\main\java
+E:\kimbs\java2_basic\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2882818587.index
+\pro06\src\main\java
 E:\kimbs\java2_basic\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3117473032.index
 \test\src\main\java
