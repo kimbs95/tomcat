@@ -1,4 +1,4 @@
-package sec01.ex01;
+package sec01.ex02;
 
 import java.util.Date;
 
@@ -8,7 +8,7 @@ public class MemberBean {
 	private String name;
 	private String email;
 	private Date joinDate;
-	
+	private Address addr;
 	
 	public MemberBean() {
 		
@@ -19,6 +19,7 @@ public class MemberBean {
 		this.pwd=pwd;
 		this.name=name;
 		this.email=email;
+		
 		
 	}
 	
@@ -51,6 +52,12 @@ public class MemberBean {
 	}
 	public void setJoinDate(Date joinDate) {
 		this.joinDate= joinDate;
+	}
+	public Address getAddr() {
+		return addr;
+	}
+	public void setAddr(Address addr) {
+		this.addr = addr;
 	}
 	
 }

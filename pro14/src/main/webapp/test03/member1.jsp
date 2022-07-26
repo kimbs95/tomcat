@@ -29,6 +29,7 @@
 			<td>${age}</td>
 			<td>${height}</td>
 		</tr>
+		
 	</table>
 </body>
 </html>

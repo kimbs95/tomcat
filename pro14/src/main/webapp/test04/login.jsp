@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="result.jsp">
+	<form action="result2.jsp">
 		아이디: <input type="text" name="userID" size=20 /> <br>
 		비밀번호: <input type="password" size=20 /> <br>
 		<input type="submit" value="로그인" /><input type="reset" value="다시입력" />
