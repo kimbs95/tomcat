@@ -50,11 +50,12 @@ private void doHandle(HttpServletRequest request , HttpServletResponse response)
 				System.out.println("파일이름:"+fileItem.getName());
 				System.out.println("파일크기:"+fileItem.getSize()+"bytes");
 				if(fileItem.getSize() > 0) {
+					System.out.println(fileItem.getName());
 					int idx =fileItem.getName().lastIndexOf("\\");
 					if(idx ==-1) {
+						System.out.println(fileItem.getName());
 						idx= fileItem.getName().lastIndexOf("/");
 					}
-					System.out.println(idx);
 					String fileName =fileItem.getName().substring(idx+1);
 					File uploadFile =new File(currentDirPath + "\\"+fileName);
 					fileItem.write(uploadFile);
