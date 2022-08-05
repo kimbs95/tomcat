@@ -15,5 +15,6 @@
 		<jsp:forward page="login.jsp" />
 		<%} %>
 		<h1>환영 합니다 <%=userID %> 님</h1>
+		
 </body>
 </html>

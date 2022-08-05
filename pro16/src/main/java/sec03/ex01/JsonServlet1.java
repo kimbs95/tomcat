@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 @WebServlet("/json")
 public class JsonServlet1 extends HttpServlet {
@@ -28,6 +29,12 @@ public class JsonServlet1 extends HttpServlet {
 			JSONParser jsonParser = new JSONParser();
 			JSONObject jsonObject =(JSONObject) jsonParser.parse(jsonInfo);
 			System.out.println("*회원정보*");
+			System.out.println(jsonObject.get("name"));
+			System.out.println(jsonObject.get("age"));
+			System.out.println(jsonObject.get("gender"));
+			System.out.println(jsonObject.get("nickname"));
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
