@@ -44,10 +44,10 @@
 						<span style="padding-left: 20px"></span>
 		</c:forEach>
 		<span style="font-size:12px;">[답변]</span>
-		<a class='cls1' href="${contextPath }/board/viewArticle.do?articleNO=${article.articleNO}">${article.title }</a>
+		<a class='cls1' href="${contextPath }/board1/viewArticle.do?articleNO=${article.articleNO}">${article.title }</a>
 		</c:when>
 		<c:otherwise>
-			<a class='cls1' href="${contextPath }/board/viewArticle.do?articleNO=${article.articleNO}">${article.title }</a>
+			<a class='cls1' href="${contextPath }/board1/viewArticle.do?articleNO=${article.articleNO}">${article.title }</a>
 		</c:otherwise>
 		</c:choose>
 				</td>
@@ -61,5 +61,6 @@
 	</c:when>
 </c:choose>
 </table>
+<a class="cls1" href ="${contextPath }/board1/articleForm.do" ><p class="cls2">글쓰기</p> </a>
 </body>
 </html>
