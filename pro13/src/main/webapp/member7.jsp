@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java,util.* ,sec01.ex01.*%>
+    pageEncoding="UTF-8" import="java.util.* ,sec01.ex01.*"%>
     <%request.setCharacterEncoding("utf-8"); %>
     <jsp:useBean id="m" class="sec01.ex01.MemberBean" scope="page" />
     <jsp:setProperty name="m" property="*" />
+     <%
+    MemberDAO memberDAO= new MemberDAO();
+    List membersList =memberDAO.listMembers();
+    %>
 <!DOCTYPE html>
 <html>
 <head>

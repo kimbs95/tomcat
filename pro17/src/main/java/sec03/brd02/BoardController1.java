@@ -68,6 +68,7 @@ public class BoardController1 extends HttpServlet {
 				String title= articleMap.get("title");
 				String content =articleMap.get("content");
 				String imageFileName = articleMap.get("imageFileName");
+				System.out.println(imageFileName);
 				
 				articleVO.setParentNO(0);
 				articleVO.setId("hong");
@@ -110,6 +111,7 @@ public class BoardController1 extends HttpServlet {
 					System.out.println("파라미터이름:"+fileItem.getFieldName());
 					System.out.println("파일이름:"+fileItem.getName());
 					System.out.println("파일크키:"+fileItem.getSize()+ "bytes");
+					articleMap.put(fileItem.getFieldName(),fileItem.getName());
 					if(fileItem.getSize() >0 ) {
 						int idx = fileItem.getName().lastIndexOf("\\");
 						if(idx ==-1) {

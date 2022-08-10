@@ -35,7 +35,7 @@ public class BoardDAO {
 			try {
 				conn=dataFactory.getConnection();
 				String query ="SELECT function_hierarchical() AS articleNO ,@LEVEL AS level,"
-						+ "parentNO, title,content,id,writeDate FROM (SELECT @start_with:=0,@articleNO:=@start_with,@LEVEL:=0)tbl"
+						+ "parentNO, title,content,id,writeDate,imageFileName FROM (SELECT @start_with:=0,@articleNO:=@start_with,@LEVEL:=0)tbl"
 						+" JOIN t_board ";
 				System.out.println(query);
 				pstmt =conn.prepareStatement(query);
@@ -48,6 +48,7 @@ public class BoardDAO {
 					String title =rs.getString("title");
 					String content = rs.getString("content");
 					String id =rs.getString("id");
+					String imageFileName = rs.getString("imageFileName");
 					Date writeDate =rs.getDate("writeDate");
 					ArticleVO article =new ArticleVO();
 					article.setLevel(level);
@@ -56,6 +57,7 @@ public class BoardDAO {
 					article.setTitle(title);
 					article.setContent(content);
 					article.setId(id);
+					article.setImageFileName(imageFileName);
 					article.setWirteDate(writeDate);
 					articlesList.add(article);
 				}
@@ -74,7 +76,7 @@ public class BoardDAO {
 						String query="select max(articleNO) from t_board";
 						System.out.println(query);
 						pstmt =conn.prepareStatement(query);
-						ResultSet rs = pstmt.executeQuery(query);
+						ResultSet rs = pstmt.executeQuery();
 						if(rs.next()) 
 							return (rs.getInt(1)+1);
 						rs.close();
