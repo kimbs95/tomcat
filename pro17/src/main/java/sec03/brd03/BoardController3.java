@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,13 +25,13 @@ import org.apache.commons.io.FileUtils;
 
 @WebServlet("/board3/*")
 public class BoardController3 extends HttpServlet {
-	private static final long serialVersionUID = 1L;
        private static String ARTICLE_IMAGE_REPO = "C:/board/article_image";
        private BoardService boardService;
        private ArticleVO articleVO;
    
     public BoardController3() {
         super();
+        
         
     }
 
@@ -56,7 +57,7 @@ public class BoardController3 extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		HttpSession session;
 		String action =request.getPathInfo();
-		System.out.println("action"+action);
+		System.out.println("action: "+action);
 		
 		try {
 			List<ArticleVO> articlesList = new ArrayList<ArticleVO>();
@@ -118,31 +119,44 @@ public class BoardController3 extends HttpServlet {
 					File destDir = new File(ARTICLE_IMAGE_REPO+"\\"+articleNO );
 					destDir.mkdirs();
 					FileUtils.moveFileToDirectory(srcFile,destDir,true);
-					;
+					
 					File oldFile = new File(ARTICLE_IMAGE_REPO+"\\"+articleNO+"\\"+originalFileName);
 					oldFile.delete();
 				}
 				PrintWriter pw = response.getWriter();
 				pw.print("<script>"+" alert('글 수정했다 ? ');"+"location.href='"+request.getContextPath()+"/board3/viewArticle.do?articleNO=" + articleNO +"';" + "</script>");
 				return;
-			}else if (action.equals("removeArticle.do")) {
+			}else if (action.equals("/removeArticle.do")) {
 				int articleNO = Integer.parseInt(request.getParameter("articleNO"));
-				List<Integer> articleNOList = boardService.removeArticle(articleNO);
+				List <Integer> articleNOList = boardService.removeArticle(articleNO);
 				for (int _articleNO : articleNOList) {
-					File imgDir = new File(ARTICLE_IMAGE_REPO +"\\"+_articleNO);
-					if(imgDir.exists()) {
+					File imgDir = new File(ARTICLE_IMAGE_REPO + "\\" + _articleNO);
+					if (imgDir.exists()) {
+						System.out.println(imgDir);
+						System.out.println("imgDir.exists()::::: " + imgDir.exists());
 						FileUtils.deleteDirectory(imgDir);
 					}
 				}
 				PrintWriter pw = response.getWriter();
-				pw.print("<scrip>"+" alert('삭제했다');"+ " location.href ='"+request.getContextPath()+"/board3/listArticles.do';"+"</script>" );
+				pw.print("<script>"+"alert('삭제했다~~');"+"location.href='"+ request.getContextPath() + "/board3/listArticles.do';"+"</script>" );
 				return;
+				/*
+				 * int articleNO = Integer.parseInt(request.getParameter("articleNO"));
+				 * List<Integer> articleNOList = boardService.removeArticle(articleNO); for (int
+				 * _articleNO : articleNOList) { File imgDir = new File(ARTICLE_IMAGE_REPO
+				 * +"\\"+_articleNO); if(imgDir.exists()) { FileUtils.deleteDirectory(imgDir); }
+				 * 
+				 * } PrintWriter pw = response.getWriter();
+				 * pw.print("<scrip>"+" alert('삭제했다');"+
+				 * " location.href ='"+request.getContextPath()+"/board3/listArticles.do';"+
+				 * "</script>" ); return;
+				 */
 			}else if( action.equals("/replyForm.do")) {
 				int parentNO =Integer.parseInt(request.getParameter("parentNO"));
 				session =request.getSession();
 				session.setAttribute("parentNO", parentNO);
 				nextPage = "/board03/replyForm.jsp";
-			}else if(action.equals("/addReply,do")) {
+			}else if(action.equals("/addReply.do")) {
 				session =request.getSession();
 				int parentNO =(Integer) session.getAttribute("parentNO");
 				session.removeAttribute("parentNO");
@@ -207,6 +221,7 @@ public class BoardController3 extends HttpServlet {
 					articleMap.put(fileItem.getFieldName(), fileItem.getName());
 					if(fileItem.getSize() > 0 ) {
 						int idx = fileItem.getName().lastIndexOf("\\");
+						System.out.println(fileItem.getName());
 						if(idx == -1) {
 							idx = fileItem.getName().lastIndexOf("/");
 						}

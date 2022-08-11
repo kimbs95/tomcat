@@ -11,6 +11,9 @@
 <html>
 <head>
 <style>
+body{
+background: gray;
+}
  .cls1 {text-decoration:none;}
  .cls2{text-align:center; font-size:30px;}
  </style>

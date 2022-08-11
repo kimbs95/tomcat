@@ -49,6 +49,7 @@ public class BoardDAO {
 				String title = rs.getString("title");
 				String content =rs.getString("content");
 				String id = rs.getString("id");
+				String imageFileName = rs.getString("imageFileName");
 				Date writeDate =rs.getDate("writeDate");
 				ArticleVO article =new ArticleVO();
 				article.setLevel(level);
@@ -57,6 +58,7 @@ public class BoardDAO {
 				article.setTitle(title);
 				article.setContent(content);
 				article.setId(id);
+				article.setImageFileName(imageFileName);
 				article.setWriteDate(writeDate);
 				articlesList.add(article);
 			}
@@ -190,14 +192,21 @@ public class BoardDAO {
 	public void deleteArticle(int articleNO) {
 		try {
 			conn = dataFactory.getConnection();
-			String query = "DELETE FROM t_board";
+			
+			String query = "DELETE FROM t_board WHERE articleNO = ? OR parentNO = ?";
+			
+			
+			/*String query = "DELETE FROM t_board";
 			query += " WHERE articleNO in (";
 			query += " SELECT articleNO FROM t_board";
 			query +=" START WITH articleNO = ?";
 			query +=" CONNECT BY PRIOR articleNO = parentNO )";
+			*/
+			
 			System.out.println(query);
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1,  articleNO);
+			pstmt.setInt(2, articleNO);
 			pstmt.executeUpdate();
 			pstmt.close();
 			conn.close();
@@ -211,31 +220,29 @@ public class BoardDAO {
 		List<Integer> articleNOList = new ArrayList<Integer>();
 		try {
 			conn = dataFactory.getConnection();
-			String query = "SELECT articleNO FROM t_board";
-			query += " START WITH articleNO =? ";
-			query += " CONNECT BY PRIOR articleNO = parentNO";
+			String query = "SELECT articleNO FROM t_board WHERE articleNO = ? OR parentNO = ?";
 			System.out.println(query);
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, articleNO);
+			pstmt.setInt(2, articleNO);
+			/*
+			 * String query = "SELECT articleNO FROM  t_board "; query +=
+			 * " START WITH articleNO = ?"; query +=
+			 * " CONNECT BY PRIOR articleNO = parentNO"; System.out.println(query); pstmt =
+			 * conn.prepareStatement(query); pstmt.setInt(1, articleNO);
+			 */
 			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
-				articleNO =rs.getInt("articleNO");
+			while (rs.next()) {
+				articleNO = rs.getInt("articleNO");
 				articleNOList.add(articleNO);
 			}
 			pstmt.close();
 			conn.close();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return articleNOList;
 	}
 	
+}	
 	
-	
-	
-	
-	
-	
-	
-	
-}
