@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/download.do")
 public class FileDownloadController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	   private static String ARTICLE_IMAGE_REPO = "C:/board/article_image";
+	   private static String ARTICLE_IMAGE_REPO = "C:\\board\\article_image";
 	   
 	   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			doHandle(request,response);
@@ -29,11 +29,11 @@ public class FileDownloadController extends HttpServlet {
 			doHandle(request,response);
 		}
 	   
-    protected void doHandle(HttpServletRequest request , HttpServletResponse response)
+    private void doHandle(HttpServletRequest request , HttpServletResponse response)
     throws ServletException ,IOException{
     	request.setCharacterEncoding("utf-8");
-    	response.setContentType("utf-8");
-    	String imageFileName =(String) request.getParameter("imageFileName");
+    	response.setContentType("text/html; charset=utf-8");
+    	String imageFileName =(String)request.getParameter("imageFileName");
     	String articleNO =request.getParameter("articleNO");
     	System.out.println("imageFileName =" +imageFileName);
     	OutputStream out = response.getOutputStream();
@@ -50,7 +50,8 @@ public class FileDownloadController extends HttpServlet {
     		if(count == -1 )  break;
     		out.write(buffer,0,count);
     	}
-    	
+    	in.close();
+    	out.close();
     }
     
 

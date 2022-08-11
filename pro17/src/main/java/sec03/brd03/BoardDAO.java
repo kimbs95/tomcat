@@ -34,11 +34,18 @@ public class BoardDAO {
 		List<ArticleVO> articlesList =new ArrayList();
 		try {
 			conn=dataFactory.getConnection();
+			/*
 			String query  = "SELECT function_hierarchical() AS articleNO";
 					query += ", parentNO, imageFileName, @level AS level,";
 					query += " title,content,id,writeDate from (";
 					query += "select @start_with:=0,@articleNO:=@start_with,";
 					query +=" @level:=0)tbl JOIN t_board";
+					*/
+			
+			  String query = "SELECT tb.articleNo, tb.parentNo, fnc.level,tb.title,tb.content,tb.imageFileName,tb.writeDate,tb.id"
+		        		+ " FROM (SELECT function_hierarchical() AS articleNO, parentNO, @level AS LEVEL, title, content, imageFileName,writeDate, id FROM"
+		        		+ " (SELECT @start_with:=0,@articleNO:=@start_with, @level:=0) tbl JOIN t_board) fnc"
+		        		+ " left outer join t_board tb ON tb.articleNo = fnc.articleNo";
 					System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			ResultSet rs = pstmt.executeQuery();

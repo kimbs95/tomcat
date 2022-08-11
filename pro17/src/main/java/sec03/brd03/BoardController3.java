@@ -135,7 +135,7 @@ public class BoardController3 extends HttpServlet {
 						System.out.println(imgDir);
 						System.out.println("imgDir.exists()::::: " + imgDir.exists());
 						FileUtils.deleteDirectory(imgDir);
-					}
+					}          
 				}
 				PrintWriter pw = response.getWriter();
 				pw.print("<script>"+"alert('삭제했다~~');"+"location.href='"+ request.getContextPath() + "/board3/listArticles.do';"+"</script>" );
