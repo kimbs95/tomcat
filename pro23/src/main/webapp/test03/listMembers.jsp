@@ -10,7 +10,7 @@ request.setCharacterEncoding("utf-8");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 정보 출력창</title>
 </head>
 <body>
 <table border="1" align="center" width="80%">
@@ -31,6 +31,6 @@ request.setCharacterEncoding("utf-8");
 	</tr>
 	</c:forEach>
 </table>
-<a href ="${contextPath }/test01/memberForm.jsp"><h1>회원가입</h1> </a>
+<a href ="${contextPath }/test03/memberForm.jsp"><h1 style="text-align: center">회원가입</h1> </a>
 </body>
 </html>

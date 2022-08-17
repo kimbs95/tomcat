@@ -26,11 +26,11 @@ public class MemberServlet1 extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset =utf-8");
 		MemberDAO dao =new MemberDAO();
-//		String name = dao.selectName();
+		String name = dao.selectName();
 		int pwd = dao.selectPwd();
 		PrintWriter pw = response.getWriter();
 		pw.write("<script>");
-//		pw.write("alert('이름:"+name+"');");
+		pw.write("alert('이름:"+name+"');");
 		pw.write("alert('비밀번호: "+pwd+"');");
 		pw.write("</script>");
 	}
