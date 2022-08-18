@@ -49,6 +49,7 @@ public class MemberServlet4 extends HttpServlet {
 		MemberDAO dao =new MemberDAO();
 		MemberVO memberVO =new MemberVO();
 		String action =request.getParameter("action");
+		System.out.println("action :" +action);
 		String nextPage="";
 		
 		if(action == null || action.equals("listMembers")) {
@@ -105,7 +106,9 @@ public class MemberServlet4 extends HttpServlet {
 			nextPage="/mem4.do?action=listMembers";
 		}else if(action.equals("searchMember")) {
 			String name=request.getParameter("name");
+			System.out.println("name :"+name);
 			String email= request.getParameter("email");
+			System.out.println("email :"+email);
 			memberVO.setName(name);
 			memberVO.setEmail(email);
 			List<MemberVO> membersList = dao.searchMember(memberVO);

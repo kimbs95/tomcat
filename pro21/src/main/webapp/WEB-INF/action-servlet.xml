@@ -12,8 +12,14 @@
 	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	
 	
-	
-	<!-- 
+	<!--  1차 맵핑 -->
+	<bean id="userUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping" >
+		<property name="mappings">
+			<props>
+				<prop key="/test/*.do">userController</prop>
+			</props>
+		</property>
+	</bean>	
 	
 	<bean id ="simpleUrlController" class="com.spring.ex01.SimpleUrlController" />
 		<bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
@@ -24,7 +30,7 @@
 			</property>
 		</bean>
 	
-	 -->
+<!--  도메인 출력 , test 에 있는 result 가 출력  -->
 	 
 	 <bean id ="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	 	<property name= "viewClass" value="org.springframework.web.servlet.view.JstlView" />
@@ -32,20 +38,15 @@
 	 	<property name="suffix" value=".jsp" />
 	 </bean>
 	
-	<bean id="userUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping" >
-		<property name="mappings">
-			<props>
-				<prop key="/test/*.do">userController</prop>
-			</props>
-		</property>
-	</bean>	
+	
 	
 	<bean id="userController" class="com.spring.ex02.UserController" >
 		<property name="methodNameResolver">
-			<ref local="userMethodNameResolver" />
+			<ref local="userMethodNameResolver" /><!--  참조 합니다. -->
 		</property>
 	</bean>
 	
+	<!--  2 차 맵핑  -->
 	<bean id ="userMethodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
 		<property name="mappings">
 			<props>
