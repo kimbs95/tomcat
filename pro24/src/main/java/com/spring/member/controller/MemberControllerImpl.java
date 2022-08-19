@@ -32,6 +32,7 @@ public class MemberControllerImpl extends MultiActionController implements Membe
 		int begin = 0;
 		if(!((contextPath == null)||("".equals(contextPath)))) {
 			begin=contextPath.length();
+			System.out.println("begin :"+begin);
 		}
 		int end;
 		if(uri.indexOf(";")!=-1) {
@@ -40,6 +41,8 @@ public class MemberControllerImpl extends MultiActionController implements Membe
 			end=uri.indexOf("?");//요청 uri에 "?"가 있을 경우"?" 문자 위치를 구함
 		}else {
 			end=uri.length();
+			System.out.println("uri :"+uri);
+			System.out.println(uri.length());
 		}
 //		http://localhost:8080/member/listMember.do로 요청시 먼저 ".do"를 제거한
 //		http://localhost:8080/member/listMember를 구한후,
@@ -53,6 +56,7 @@ public class MemberControllerImpl extends MultiActionController implements Membe
 		if(fileName.lastIndexOf("/")!=-1) {
 			fileName= fileName.substring(fileName.lastIndexOf("/"),fileName.length());
 //			요청 명에서 역순으로 최초'/'의 위치를 구한후,'/'다음부터의 문자열을 구함
+			System.out.println("fileName :"+fileName);
 		}
 		return fileName;
 	}
@@ -89,6 +93,7 @@ public class MemberControllerImpl extends MultiActionController implements Membe
 		bind(request,memberVO);
 		int result = 0 ;
 		result = memberService.addMember(memberVO);
+		System.out.println("result :"+result);
 		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
 		return mav;
 	}
