@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <c:set var="contextPath" value="${pageContext.request.contextPath }" />
-    <%request.setCharacterEncoding("UTF-8"); %>
+    <%@ taglib prefix ="c" uri ="http://java.sun.com/jsp/jstl/core" %>
+   	<c:set var="contextPath" value="${pageContext.request.contextPath }" />
+    <%request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인 해야징 </title>
+<title>로그인해야징</title>
 </head>
 <body>
-	<form action="${contextPath }/test/login4.do">
+<form action="${contextPath }/test/login2.do">
 		<!-- <input type="hidden" name="email" value="hong@test.com" /> -->
 		<table width="400">
 			<tr>

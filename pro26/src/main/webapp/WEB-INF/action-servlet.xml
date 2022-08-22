@@ -10,15 +10,15 @@ http://www.springframework.org/schema/aop
 http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-
+<!--  출력뷰 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/test/" />
+		 <property name="prefix" value="/WEB-INF/views/member/" />
 		<!-- 
-		 <property name="prefix" value="/WEB_INF/views/member/" />
+		<property name="prefix" value="/WEB-INF/views/test/" />
 		 -->
-		 <property name="suffix" value=".jsp"></property>
+		 <property name="suffix" value=".jsp" />
 	</bean>
-	
+	<!-- 입력뷰 -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
 	<context:component-scan base-package="com.spring" />
