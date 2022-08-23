@@ -18,6 +18,7 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public List selectAllMemberList() throws DataAccessException {
 		List<MemberVO> membersList =null;
+		System.out.println("서비스 들어왔다 ?");
 		membersList = sqlSession.selectList("mapper.member.selectAllMemberList");
 		return membersList;
 	}

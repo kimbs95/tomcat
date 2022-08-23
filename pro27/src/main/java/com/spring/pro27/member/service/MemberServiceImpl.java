@@ -12,29 +12,31 @@ import com.spring.pro27.member.dao.MemberDAO;
 import com.spring.pro27.member.vo.MemberVO;
 
 @Service("memberService")
-@Transactional(propagation =  Propagation.REQUIRED)
+@Transactional(propagation = Propagation.REQUIRED)
 public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDAO memberDAO;
 	
-	
 	@Override
 	public List listMembers() throws DataAccessException {
-		List membersList =null;
-		membersList =memberDAO.selectAllMemberList();
+		List membersList = null;
+		System.out.println("서비스 들어왔다");
+		membersList = memberDAO.selectAllMemberList();
 		return membersList;
-		
 	}
 	
 	@Override
-	public int addMember(MemberVO member)throws DataAccessException{
+	public int addMember(MemberVO member) throws DataAccessException {
 		return memberDAO.insertMember(member);
 	}
-	
 	
 	@Override
 	public int removeMember(String id) throws DataAccessException {
 		return memberDAO.deleteMember(id);
 	}
-
+	
+	@Override
+	public MemberVO login(MemberVO memberVO)throws Exception{
+		return memberDAO.loginById(memberVO);
+	}
 }
